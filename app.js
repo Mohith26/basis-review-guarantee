@@ -308,7 +308,7 @@ function showTab(name) {
   if (name === 'monitor') renderMonitor();
   if (name === 'method') renderMethod();
   if (name === 'policy') drawCurve();
-  history.replaceState(null, '', '#tab=' + name);
+  history.replaceState(null, '', `#tab=${name}&alpha=${state.alpha}&delta=${state.delta}&audit=${state.auditRate}`);
   if (window.lucide) lucide.createIcons();
 }
 
@@ -344,9 +344,13 @@ $('btnApply').onclick = () => {
 window.addEventListener('resize', () => { const a = document.querySelector('.tab.on')?.dataset.tab; if (a === 'policy') drawCurve(); if (a === 'monitor') renderMonitor(); if (a === 'method') renderMethod(); });
 
 fetch('data/validity.json').then((r) => r.json()).then((v) => { validity = v; if (document.querySelector('.tab.on')?.dataset.tab === 'method') renderMethod(); }).catch(() => {});
+const h = new URLSearchParams(location.hash.slice(1));
+for (const [k, sel] of [['alpha', 'selAlpha'], ['delta', 'selDelta'], ['audit', 'selAudit']]) {
+  const v = h.get(k);
+  if (v && [...$(sel).options].some((o) => o.value === v)) { $(sel).value = v; state[k === 'audit' ? 'auditRate' : k] = +v; }
+}
 setWorking(true);
 compute();
 renderAll();
-const h = new URLSearchParams(location.hash.slice(1));
 if (h.get('tab')) showTab(h.get('tab'));
 if (window.lucide) lucide.createIcons();

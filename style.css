@@ -244,3 +244,4 @@ h3 { font-size: 14.5px; font-weight: 600; margin: 0 0 3px; color: var(--ink); le
 .vnote { margin-top: 10px; font-size: 12px; }
 .vnote b { color: var(--ink2); font-weight: 500; }
 .mon .chart { height: 352px; }
+.chart-card .chart { flex: 1; min-height: 268px; }

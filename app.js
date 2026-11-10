@@ -108,7 +108,7 @@ function drawCurve() {
     .map((p) => `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="5" fill="transparent" data-tip="${p.who}: post ${pct(p.x, 0)} of history → ${pct(p.y, 2)} miscoded (${p.s.k}/${fmt(p.s.n)}); p = ${p.s.pval < 0.001 ? '<0.001' : p.s.pval.toFixed(3)}${p.s.rejected ? ', passes' : ', stops here'}"/>`).join('');
  const shareOf = (st) => (st ? st.n / calN : 0);
   const stc = P.stats.staticAuto;
-  $('curveStats').innerHTML = `<div><div class="l">Certified to post</div><div class="v">${pct(shareOf(cr), 0)}<small>vs ${pct(shareOf(cc), 0)} with confidence alone</small></div></div>
+  $('curveStats').innerHTML = `<div><div class="l">Certified to post</div><div class="v">${pct(shareOf(cr), 0)}<small>vs ${pct(shareOf(cc), 0)} on confidence</small></div></div>
     <div><div class="l">Ranking quality (AUC)</div><div class="v">${P.aucRisk.toFixed(2)}<small>vs ${P.aucConf.toFixed(2)}</small></div></div>
     <div><div class="l">99% confidence cutoff, Oct</div><div class="v" style="color:${stc.rate > P.alpha ? 'var(--danger)' : 'var(--ink)'}">${pct(stc.rate, 1)}<small>miscoded</small></div></div>`;
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}">${g}${band}<line x1="${m.l}" x2="${W - m.r}" y1="${aY}" y2="${aY}" stroke="var(--danger)" stroke-dasharray="4 3"/><text x="${m.l + 6}" y="${aY - 6}" style="fill:var(--danger)">Target ${pct(P.alpha)}</text>${line(C, 'var(--clay)', 2)}${line(R, 'var(--ink)', 2)}${marks}<text x="${m.l}" y="${H - 8}" text-anchor="start" dx="-6" style="opacity:0">.</text>${hit}</svg>`;

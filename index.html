@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review guarantee · October close · Basis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+<div class="app">
+  <aside class="rail" aria-label="Basis">
+    <div class="mark" title="Basis"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#fff"/><path d="M9.7 7.8H18.1A4.15 4.15 0 0 1 18.1 16.1H9.7Z M9.7 18.7H21.6A3.45 3.45 0 0 1 21.6 25.6H9.7Z" fill="#0f0d0b"/></svg></div>
+    <span class="ri" title="Home"><i data-lucide="house"></i></span>
+    <span class="ri" title="Inbox"><i data-lucide="inbox"></i><b class="dot"></b></span>
+    <span class="ri on" title="Client accounting"><i data-lucide="layout-grid"></i></span>
+    <span class="ri" title="Tax"><i data-lucide="landmark"></i></span>
+    <span class="ri" title="Audit"><i data-lucide="folder-check"></i></span>
+    <span class="ri" title="Procedures"><i data-lucide="book-open"></i></span>
+    <div class="rail-bottom">
+      <span class="ri" title="Settings"><i data-lucide="settings"></i></span>
+      <span class="avatar" title="Sara Kim, Manager">SK</span>
+    </div>
+  </aside>
+
+  <aside class="side">
+    <button class="ws"><span class="ws-logo">HP</span><span class="ws-name">Hollis &amp; Pryor CPAs</span><i data-lucide="chevrons-up-down"></i></button>
+    <div class="search"><i data-lucide="search"></i><span>Search</span><kbd>⌘K</kbd></div>
+    <div class="nav-h">Client accounting</div>
+    <nav class="nav">
+      <a><i data-lucide="kanban"></i>Close board</a>
+      <a><i data-lucide="arrow-left-right"></i>Transactions<span class="cnt" id="navTx"></span></a>
+      <a><i data-lucide="file-spreadsheet"></i>Journal entries</a>
+      <a><i data-lucide="scale"></i>Reconciliations</a>
+      <a><i data-lucide="chart-no-axes-column"></i>Flux</a>
+      <a class="on"><i data-lucide="shield-check"></i>Review guarantee<span class="new">New</span></a>
+    </nav>
+    <div class="nav-h">Clients <span class="nav-h-r" id="navClients"></span></div>
+    <nav class="nav clients" id="clientNav"></nav>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <div class="crumbs"><span>Client accounting</span><i data-lucide="chevron-right"></i><span>October close</span><i data-lucide="chevron-right"></i><b>Review guarantee</b></div>
+      <div class="top-r">
+        <span class="working" id="working"><span class="spin"></span><span id="workingTxt">Certifying…</span></span>
+        <span class="faces"><span style="background:#41666f">SK</span><span style="background:#887f72">DL</span><span style="background:#494641">AR</span></span>
+        <button class="btn ghost"><i data-lucide="share"></i>Share</button>
+      </div>
+    </header>
+
+    <section class="page">
+      <div class="ph">
+        <div>
+          <h1>Review guarantee</h1>
+          <p class="sub">Which coded transactions can post without line-by-line review, with a certified bound on how many are miscoded.</p>
+        </div>
+        <div class="ph-r">
+          <span class="period"><i data-lucide="calendar"></i>Oct 1 – Oct 31, 2026</span>
+          <button class="btn dark" id="btnApply"><i data-lucide="check"></i>Apply to October</button>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab on" data-tab="policy">Policy</button>
+        <button class="tab" data-tab="feeds">Clients &amp; feeds <span class="tcount" id="feedAlarmCount"></span></button>
+        <button class="tab" data-tab="monitor">Monitor</button>
+        <button class="tab" data-tab="method">Method</button>
+      </div>
+
+      <div class="tabpane on" id="tab-policy">
+        <div class="policy card">
+          <div class="pol-l">
+            <div class="pol-h"><i data-lucide="shield-check"></i>Firm policy</div>
+            <p class="pol-s">Post coded transactions without line-by-line review only when Basis can certify that at most
+              <select id="selAlpha"><option value="0.005">0.5%</option><option value="0.01" selected>1.0%</option><option value="0.02">2.0%</option></select>
+              of them are miscoded, with
+              <select id="selDelta"><option value="0.1">90%</option><option value="0.05" selected>95%</option><option value="0.01">99%</option></select>
+              confidence. Always review items above client materiality, and keep a
+              <select id="selAudit"><option value="0.05">5%</option><option value="0.1" selected>10%</option><option value="0.2">20%</option></select>
+              random audit sample of everything that skips review.</p>
+          </div>
+          <div class="pol-r" id="certBadge"></div>
+        </div>
+
+        <div class="kpis" id="kpis"></div>
+
+        <div class="grid2">
+          <div class="card chart-card">
+            <div class="card-h"><div><h3>Miscode rate vs. share posted without review</h3><p class="muted">Jul – Sep history, every transaction reviewed. Each point is a cutoff; the certified cutoff is the loosest one whose test passes.</p></div>
+              <div class="legend"><span><i class="lg ink"></i>Basis risk score</span><span><i class="lg clay"></i>Agent confidence alone</span><span><i class="lg dash"></i>Target</span></div></div>
+            <div id="curve" class="chart"></div>
+            <div class="cstats" id="curveStats"></div>
+          </div>
+          <div class="stonepanel">
+            <div class="sp-h"><h3>October transactions</h3><span class="sp-r" id="txSummary"></span></div>
+            <div class="txcard" id="txList"></div>
+            <div class="alertcard" id="alertCard"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><div><h3>What each policy would have posted unreviewed in October</h3><p class="muted">Simulation truth is available only because this firm is synthetic: it is what reviewers would have changed.</p></div></div>
+          <table class="tbl" id="cmpTable"></table>
+        </div>
+      </div>
+
+      <div class="tabpane" id="tab-feeds">
+        <div class="card">
+          <div class="card-h"><div><h3>Clients &amp; feeds</h3><p class="muted">The firm-wide certificate covers the pooled October population. Each bank and card feed is also watched separately, because feeds are where formats change.</p></div></div>
+          <table class="tbl feeds" id="feedTable"></table>
+        </div>
+      </div>
+
+      <div class="tabpane" id="tab-monitor">
+        <div class="grid2 mon">
+          <div class="card chart-card">
+            <div class="card-h"><div><h3 id="monTitle"></h3><p class="muted" id="monSub"></p></div>
+              <div class="legend"><span><i class="lg band"></i>Anytime-valid 95% range</span><span><i class="lg dash"></i>Target</span><span><i class="lg red"></i>Alarm</span></div></div>
+            <div id="monChart" class="chart"></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><div><h3>What happened</h3></div></div>
+            <div id="monStory" class="story"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-h"><div><h3>All feeds, firm-wide</h3><p class="muted" id="firmSub"></p></div></div>
+          <div id="firmChart" class="chart short"></div>
+        </div>
+      </div>
+
+      <div class="tabpane" id="tab-method">
+        <div class="grid3">
+          <div class="card"><div class="card-h"><div><h3>Agent confidence is not a probability</h3><p class="muted">Jul – Sep. Stated confidence vs. how often the reviewer kept the account.</p></div></div><div id="relChart" class="chart"></div></div>
+          <div class="card"><div class="card-h"><div><h3>Risk score inputs</h3><p class="muted">Logistic model fit on Apr – Jun only, so the Jul – Sep test data stays untouched.</p></div></div><table class="tbl compact" id="coefTable"></table></div>
+          <div class="card"><div class="card-h"><div><h3>Does the guarantee hold?</h3><p class="muted" id="valSub"></p></div></div><table class="tbl compact" id="valTable"></table><p class="muted vnote" id="valNote"></p></div>
+        </div>
+        <div class="card method">
+          <div class="card-h"><div><h3>How the certificate works</h3></div></div>
+          <ol class="steps">
+            <li><b>Score.</b> A logistic risk score combines the agent's confidence with ledger history (prior codings for the vendor, firm coding rules, vendor ambiguity, amount vs. the vendor's norm). It is fit on April to June.</li>
+            <li><b>Test, strict to loose.</b> Cutoffs are fixed in advance from April to June. For each, from strictest to loosest, Basis tests "more than the target share of what this cutoff posts is miscoded" on July to September with an exact binomial p-value, and stops at the first cutoff it cannot reject (Learn-then-Test, fixed-sequence). The loosest rejected cutoff is certified: with the chosen confidence, the miscode rate among future transactions it posts is at most the target, provided October looks like the summer.</li>
+            <li><b>Keep it honest.</b> A random audit sample of posted items is still reviewed. For every feed, a beta-binomial mixture martingale tests "rate ≤ target" continuously; it can be checked every day without inflating false alarms. When it crosses 1/0.05 the feed stops posting and that month's posted items go back to review.</li>
+          </ol>
+        </div>
+      </div>
+
+      <footer class="foot">Unofficial concept demo by Mohith Gajjela. Not affiliated with Basis. Synthetic data. <a href="https://github.com/Mohith26/basis-review-guarantee">Source</a></footer>
+    </section>
+  </main>
+</div>
+<div class="tip" id="tip"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

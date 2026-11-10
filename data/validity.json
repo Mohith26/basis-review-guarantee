@@ -1,0 +1,62 @@
+{
+ "R": 200,
+ "delta": 0.05,
+ "staticConf": 0.99,
+ "generatedBy": "node scripts/validity.mjs 200",
+ "results": [
+  {
+   "alpha": 0.005,
+   "riskScore": {
+    "violationRate": 0.02,
+    "meanAutoShare": 0.6311912497118524,
+    "medianTrueRisk": 0.0041116105091037495,
+    "p95TrueRisk": 0.004895906467699124
+   },
+   "rawConfidence": {
+    "certifiedRuns": 46,
+    "violationRate": 0.021739130434782608,
+    "meanAutoShare": 0.037446616135545105
+   },
+   "staticCutoff": {
+    "violationRate": 1,
+    "meanAutoShare": 0.8883373487809956
+   }
+  },
+  {
+   "alpha": 0.01,
+   "riskScore": {
+    "violationRate": 0.005,
+    "meanAutoShare": 0.8622142073656939,
+    "medianTrueRisk": 0.008892456566132974,
+    "p95TrueRisk": 0.009735951250958325
+   },
+   "rawConfidence": {
+    "certifiedRuns": 195,
+    "violationRate": 0.015384615384615385,
+    "meanAutoShare": 0.7662815640999265
+   },
+   "staticCutoff": {
+    "violationRate": 1,
+    "meanAutoShare": 0.8883373487809956
+   }
+  },
+  {
+   "alpha": 0.02,
+   "riskScore": {
+    "violationRate": 0,
+    "meanAutoShare": 0.9914823971178319,
+    "medianTrueRisk": 0.014483260410264182,
+    "p95TrueRisk": 0.015424572225312906
+   },
+   "rawConfidence": {
+    "certifiedRuns": 200,
+    "violationRate": 0,
+    "meanAutoShare": 0.9901589592289279
+   },
+   "staticCutoff": {
+    "violationRate": 0,
+    "meanAutoShare": 0.8883373487809956
+   }
+  }
+ ]
+}

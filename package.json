@@ -1,0 +1,9 @@
+{
+  "name": "basis-review-guarantee",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/guarantee.test.mjs",
+    "validity": "node scripts/validity.mjs 200 > data/validity.json"
+  }
+}
